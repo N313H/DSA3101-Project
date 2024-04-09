@@ -15,7 +15,6 @@ from h2ogpte import H2OGPTE
 app = Flask(__name__)
 #CORS(app, resources={r"/*": {"origins": ["http://localhost:3002", "http://localhost:3000"]}})
 
-
 def connect_to_mysql():
     return mysql.connector.connect(
         host="db",
@@ -33,6 +32,7 @@ def read_json_file(file_path):
 
 app = Flask(__name__)
 
+#environment set up for the chatbot
 API_KEY = "sk-ms7SU43E34tS9UJks5RD2KM3m1JumOR2pM73Dk95VzKjM6TZ"
 REMOTE_ADDRESS = "https://h2ogpte.genai.h2o.ai"
 
