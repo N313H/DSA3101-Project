@@ -12,8 +12,10 @@ import os
 import re
 from h2ogpte import H2OGPTE
 
+
+
 app = Flask(__name__)
-#CORS(app, resources={r"/*": {"origins": ["http://localhost:3002", "http://localhost:3000"]}})
+CORS(app, resources={r"/*": {"origins": ["http://localhost:3002", "http://localhost:3000"]}})
 
 def connect_to_mysql():
     return mysql.connector.connect(
@@ -23,6 +25,29 @@ def connect_to_mysql():
         database="connect",
         port=3306
     )
+
+# def connect_to_mysql():
+#     return mysql.connector.connect(
+#         host="localhost",
+#         user="root",
+#         password="mypassword",
+#         database="dsa3101",
+#         port=3306
+#     )
+
+#to get the data, within each function, connect_to_mysql(). Not sure how this works with the h2o gpt tou fk..
+
+
+#establishing a sql connection
+db = connect_to_mysql()
+my_data = pd.read_sql("SELECT * FROM review",db) # this collects the initial review file with all the review
+
+#next, I should
+
+
+
+
+
 
 # Read JSON file
 def read_json_file(file_path):
@@ -41,8 +66,8 @@ if not API_KEY:
 
 client = H2OGPTE(address=REMOTE_ADDRESS, api_key=API_KEY)
 
-# Load the CSV file containing reviews
-tor = pd.read_csv('/Users/blabbyduck/Desktop/Y3S2/DSA3101/DSA3101-Project/csv_output/TopicsofReviews.csv')
+# Load the CSV file containing reviews now that we have bd its ok
+#tor = pd.read_csv('/Users/blabbyduck/Desktop/Y3S2/DSA3101/DSA3101-Project/csv_output/TopicsofReviews.csv')
 
 # Function to convert DataFrame to string
 def convert_str(topic_review):
@@ -76,8 +101,6 @@ def get_summary():
             summaries.append(s)
     
     return jsonify({"summaries": summaries})
-
-
 
 
 
