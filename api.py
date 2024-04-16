@@ -22,7 +22,7 @@ def connect_to_mysql():
         user="root",
         password="pikapikachu",
         database="dsa3101",
-        port=3307
+        port=3306
     )
 
 # Function to read JSON file
