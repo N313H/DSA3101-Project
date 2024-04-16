@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: pikapikachu
+      MYSQL_DATABASE: dsa3101
+    volumes:
+      - ./data.csv:/docker-entrypoint-initdb.d/main.csv
+    ports:
+      - "3307:3306"
+
+  api:
+    build: .
+    ports:
+      - "5002:5000"
+    depends_on:
+      - db

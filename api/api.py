@@ -11,6 +11,9 @@ import os
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 
+
+
+
 # Initialize Flask app
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": ["http://localhost:3002", "http://localhost:3000"]}})
@@ -33,7 +36,7 @@ def read_json_file(file_path):
 
 # Establish MySQL connection and read data
 db = connect_to_mysql()
-my_data = pd.read_sql("SELECT * FROM dsa3101", db)
+my_data = pd.read_sql("SELECT * FROM main", db)
 #returned data consist of 9 columns
 #index,	dataFrom, date,	review, rating, extracted_devresp, devresp_time, Topic Number, Topic
 
