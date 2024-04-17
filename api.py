@@ -13,7 +13,6 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 # Initialize Flask app
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": ["http://localhost:3002", "http://localhost:3000"]}})
 
 # Function to connect to MySQL
 def connect_to_mysql():

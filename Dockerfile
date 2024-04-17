@@ -11,9 +11,8 @@ COPY . /app
 RUN pip3 install --upgrade pip
 RUN pip3 install -r requirements.txt
 
-# Define environment variable
-ENV FLASK_APP=api.py
+# Expose the port your app runs on
+EXPOSE 5000
 
 # Run the API service
 CMD ["python", "api.py"]
-
