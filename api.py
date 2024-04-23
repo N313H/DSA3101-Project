@@ -9,20 +9,26 @@ from h2ogpte import H2OGPTE
 from flask_cors import CORS # type: ignore
 import os
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
-
-# Initialize Flask app
 app = Flask(__name__)
+# Configure the database connection string
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:pikapikachu@db/dsa3101'
+# Suppress deprecation warnings
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-# Function to connect to MySQL
-def connect_to_mysql():
-    return mysql.connector.connect(
-        host="db",
-        user="root",
-        password="pikapikachu",
-        database="dsa3101",
-        port=3306
-    )
+# Initialize the SQLAlchemy extension
+db = SQLAlchemy(app)
+
+# Define your database models
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+
+    def __repr__(self):
+        return '<User %r>' % self.username
 
 # Function to read JSON file
 def read_json_file(file_path):
