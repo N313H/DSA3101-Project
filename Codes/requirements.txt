@@ -5,3 +5,10 @@ vaderSentiment
 vaderSentiment.vaderSentiment
 re
 os
+pandas==2.2.1
+numpy==1.26.1
+json
+gensim==3.8.1
+mallet-2.0.8 from https://mallet.cs.umass.edu/download.php
+nltk
+pyLDAvis==3.2.2
